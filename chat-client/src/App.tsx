@@ -3,11 +3,12 @@ import WaitingRoom from "./components/WaitingRoom"
 
 function App() {
   const joinChat = async (userName: string, chatRoom: string) => {
-    const connection = new HubConnectionBuilder().withUrl("http://localhost:5134/chat").withAutomaticReconnect().build();
+    const connection = new HubConnectionBuilder().withUrl("http://localhost:5264/chat").withAutomaticReconnect().build();
     try {
       await connection.start();
       await connection.invoke("joinChat", { userName, chatRoom });
 
+      console.log(connection);
     } catch (error) {
       console.log(error)
     }
