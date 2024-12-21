@@ -1,9 +1,8 @@
-import { JoinProps } from "./interfaces/JoinProps";
 import { HubConnectionBuilder } from "@microsoft/signalr";
 import WaitingRoom from "./components/WaitingRoom"
 
 function App() {
-  const joinChat: React.FC<JoinProps> = async (userName, chatRoom) => {
+  const joinChat = async (userName: string, chatRoom: string) => {
     const connection = new HubConnectionBuilder().withUrl("http://localhost:5134/chat").withAutomaticReconnect().build();
     try {
       await connection.start();
@@ -13,9 +12,10 @@ function App() {
       console.log(error)
     }
   }
+  
   return (
     <div className="flex justify-center bg-[#bfbebe2d]">
-      <WaitingRoom/>
+      <WaitingRoom joinChat={joinChat}/>
     </div>
   )
 }

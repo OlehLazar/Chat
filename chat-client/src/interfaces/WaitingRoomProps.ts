@@ -1,3 +1,3 @@
 export interface WaitingRoomProps {
-    joinChat: () => void;
+    joinChat: (userName: string, chatRoom: string) => void;
 }
