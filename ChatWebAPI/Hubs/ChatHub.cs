@@ -10,6 +10,7 @@ public class ChatHub : Hub<IChatClient>
 	{
 		await Groups.AddToGroupAsync(Context.ConnectionId, connection.ChatRoom);
 
-		await Clients.Group(connection.ChatRoom).RecieveMessage("Admin", $"{connection.UserName} joins this chat.");
+		await Clients.Group(connection.ChatRoom)
+			.ReceiveMessage("Admin", $"{connection.UserName} joins this chat.");
 	}
 }
