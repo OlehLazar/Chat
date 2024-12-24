@@ -28,10 +28,25 @@ function App() {
     }
   }
   
+  const sendMessage = async (message: string) => {
+    try {
+      if (connection) {
+        await connection.invoke("SendMessage", message);
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
+  };
+
+  const closeChat = async () => {
+    await connection?.stop();
+    setConnection(undefined);
+  }
+
   return (
     <div className="bg-[#bfbebe2d] min-h-screen">
       <div className="flex justify-center pt-5">
-        {connection? <Chat messages={messages} chatRoom={chatRoom} /> : <WaitingRoom joinChat={joinChat}/>}
+        {connection? <Chat messages={messages} chatRoom={chatRoom} closeChat={closeChat} sendMessage={sendMessage} /> : <WaitingRoom joinChat={joinChat}/>}
       </div>
     </div>
   )
