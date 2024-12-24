@@ -29,8 +29,10 @@ function App() {
   }
   
   return (
-    <div className="flex justify-center bg-[#bfbebe2d] min-h-screen">
-      {connection? <Chat messages={messages} chatRoom={chatRoom} /> : <WaitingRoom joinChat={joinChat}/>}
+    <div className="bg-[#bfbebe2d] min-h-screen">
+      <div className="flex justify-center pt-5">
+        {connection? <Chat messages={messages} chatRoom={chatRoom} /> : <WaitingRoom joinChat={joinChat}/>}
+      </div>
     </div>
   )
 }
